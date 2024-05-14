@@ -3,6 +3,7 @@ let rightBox = document.getElementById("right");
 let leftBox = document.getElementById("left");
 
 for (let list of lists) {
+    // Handle drag events for desktop
     list.addEventListener("dragstart", function (e) {
         e.dataTransfer.setData("text/plain", e.target.id);
     });
@@ -29,12 +30,13 @@ for (let list of lists) {
         leftBox.appendChild(draggableElement);
     });
 
-    // Handling touch events
+    // Handling touch events for mobile
     list.addEventListener("touchstart", function (e) {
         e.target.classList.add('dragging');
     });
 
     list.addEventListener("touchmove", function (e) {
+        e.preventDefault();
         let touchLocation = e.targetTouches[0];
         let draggingItem = document.querySelector('.dragging');
         draggingItem.style.position = "absolute";
@@ -56,4 +58,9 @@ for (let list of lists) {
             leftBox.appendChild(draggingItem);
         }
     });
+}
+
+// Generate unique IDs for draggable elements
+for (let i = 0; i < lists.length; i++) {
+    lists[i].id = `list-item-${i}`;
 }

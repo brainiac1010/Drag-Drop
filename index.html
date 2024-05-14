@@ -10,7 +10,6 @@
 
 <body>
     <div class="container">
-
         <div id="left">
             <div class="list" draggable="true"> <img src="./drag_drop_icon.png">List item 1</div>
             <div class="list" draggable="true"> <img src="./drag_drop_icon.png">List item 2</div>
@@ -21,26 +20,32 @@
         <div id="right"></div>
     </div>
 
-
     <script>
         let lists = document.getElementsByClassName("list");
         let rightBox = document.getElementById("right");
-        let leftBox = document.getElementById("leftt");
+        let leftBox = document.getElementById("left");
 
-        for (list of lists) {
-            list.addEventListener("dragstar", function (x) {
+        for (let list of lists) { 
+            list.addEventListener("dragstart", function (x) {
                 let selected = x.target;
                 rightBox.addEventListener("dragover", function (x) {
-
                     x.preventDefault();
                 });
                 rightBox.addEventListener("drop", function (x) {
                     rightBox.appendChild(selected);
                     selected = null;
-                })
-            })
-        }
+                });
 
+
+                leftBox.addEventListener("dragover", function (x) {
+                    x.preventDefault();
+                });
+                leftBox.addEventListener("drop", function (x) {
+                    leftBox.appendChild(selected);
+                    selected = null;
+                });
+            });
+        }
     </script>
 </body>
 

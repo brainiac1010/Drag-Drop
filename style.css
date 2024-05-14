@@ -12,6 +12,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    text-align: center;
 }
 
 .container {
@@ -19,6 +20,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap; 
 }
 
 #left, #right {
@@ -36,12 +38,6 @@ body {
     border-color: #888;
     background: #444;
 }
-
-.dragging {
-    opacity: 0.5;
-    pointer-events: none;
-}
-
 
 .list {
     background: #007bff;

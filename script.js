@@ -33,24 +33,27 @@ for (let list of lists) {
     // Handling touch events for mobile
     list.addEventListener("touchstart", function (e) {
         e.target.classList.add('dragging');
+        let touch = e.touches[0];
+        e.target.initialX = touch.clientX;
+        e.target.initialY = touch.clientY;
     });
 
     list.addEventListener("touchmove", function (e) {
-        e.preventDefault();
-        let touchLocation = e.targetTouches[0];
+        let touch = e.touches[0];
         let draggingItem = document.querySelector('.dragging');
-        draggingItem.style.position = "absolute";
-        draggingItem.style.left = `${touchLocation.pageX}px`;
-        draggingItem.style.top = `${touchLocation.pageY}px`;
+        let deltaX = touch.clientX - draggingItem.initialX;
+        let deltaY = touch.clientY - draggingItem.initialY;
+
+        draggingItem.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
     });
 
     list.addEventListener("touchend", function (e) {
         let draggingItem = document.querySelector('.dragging');
-        draggingItem.style.position = "static";
         draggingItem.classList.remove('dragging');
+        draggingItem.style.transform = 'none';
 
-        let touchLocation = e.changedTouches[0];
-        let elementAtDrop = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
+        let touch = e.changedTouches[0];
+        let elementAtDrop = document.elementFromPoint(touch.clientX, touch.clientY);
 
         if (rightBox.contains(elementAtDrop)) {
             rightBox.appendChild(draggingItem);

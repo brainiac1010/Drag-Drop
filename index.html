@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drag & Drop</title>
     <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
     <div class="container">
         <div id="left">
-            <div class="list" draggable="true"> <img src="./drag_drop_icon.png">List item 1</div>
-            <div class="list" draggable="true"> <img src="./drag_drop_icon.png">List item 2</div>
-            <div class="list" draggable="true"> <img src="./drag_drop_icon.png">List item 3</div>
-            <div class="list" draggable="true"> <img src="./drag_drop_icon.png">List item 4</div>
-            <div class="list" draggable="true"> <img src="./drag_drop_icon.png">List item 5</div>
+            <div class="list" draggable="true">List item 1</div>
+            <div class="list" draggable="true">List item 2</div>
+            <div class="list" draggable="true">List item 3</div>
+            <div class="list" draggable="true">List item 4</div>
+            <div class="list" draggable="true">List item 5</div>
+            <div class="list" draggable="true">List item 6</div>
+            
+           
+            
         </div>
         <div id="right"></div>
     </div>
@@ -25,7 +27,7 @@
         let rightBox = document.getElementById("right");
         let leftBox = document.getElementById("left");
 
-        for (let list of lists) { 
+        for (let list of lists) {
             list.addEventListener("dragstart", function (x) {
                 let selected = x.target;
                 rightBox.addEventListener("dragover", function (x) {
@@ -35,7 +37,6 @@
                     rightBox.appendChild(selected);
                     selected = null;
                 });
-
 
                 leftBox.addEventListener("dragover", function (x) {
                     x.preventDefault();
@@ -48,5 +49,4 @@
         }
     </script>
 </body>
-
 </html>
